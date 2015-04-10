@@ -1,0 +1,19 @@
+{
+  "name": "code_jam_environment_boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pamplemousse",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.5.1",
+    "gulp-jshint": "^1.10.0",
+    "gulp-shell": "^0.4.0",
+    "jshint-stylish": "^1.0.1",
+    "underscore": "^1.8.3"
+  }
+}
