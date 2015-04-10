@@ -1,10 +1,15 @@
 var fs = require('fs');
 var _ = require('underscore');
 
+var sourceFile = process.argv[1];
 var difficulty = process.argv[2];
-var sourceFile = 'reverse_words_' + difficulty + '.in';
+var inputFile  = function() {
+  x = sourceFile.replace(/sources/, 'input');
+  x = x.substr(0, x.length - 3);
+  return x + '-' + difficulty + '.in';
+}();
 
-fs.readFile(sourceFile, 'utf8', function(err, data) {
+fs.readFile(inputFile, 'utf8', function(err, data) {
   if (err) {
     throw err;
   }
