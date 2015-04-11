@@ -7,14 +7,15 @@ var shell   = require('gulp-shell');
 var foreach = require('gulp-foreach');
 
 gulp.task('lint', function() {
-  return gulp.src('reverse_words.js')
+  return gulp.src(['Gulpfile.js', 'rounds/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
+// TODO: deactivate jscs for comments
 gulp.task('jscs', function() {
-  return gulp.src('reverse_words.js')
-    .pipe(jscs());
+  // return gulp.src(['Gulpfile.js', 'rounds/**/*.js'])
+  //   .pipe(jscs());
 });
 
 gulp.task('dev', function() {
@@ -24,6 +25,7 @@ gulp.task('dev', function() {
     ['jscs', 'lint']
   );
   // Here we go: live execution of the code
+  // TODO: do not execute all the scripts all the time
   gulp.watch('rounds/*/sources/*.js', ['small']);
 });
 
@@ -36,7 +38,9 @@ gulp.task('small', function() {
       var x = file.path.replace(/sources/, 'results');
       x = x.substr(0, x.length - 3);
       return stream.pipe(shell([
-        'node ' + file.path + ' small | tee ' + x + '-small.out'
+        'echo \n',
+        'node ' + file.path + ' small | tee ' + x + '-small.out',
+        'echo \n'
       ]));
     }));
 });
@@ -49,7 +53,7 @@ gulp.task('large', function() {
       var x = file.path.replace(/sources/, 'results');
       x = x.substr(0, x.length - 3);
       return stream.pipe(shell([
-        'node ' + file.path + ' large > ' + x + '-large.out'
+        'node ' + file.path + ' large > ' + x + '-large.out',
       ]));
     }));
 });
